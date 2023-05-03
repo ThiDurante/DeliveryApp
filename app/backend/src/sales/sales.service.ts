@@ -1,21 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { CreateSaleDto } from './dto/create-sale.dto';
 import { UpdateSaleDto } from './dto/update-sale.dto';
-import { Sale } from './entities/sale.entity';
-import { Repository } from 'typeorm';
-import { InjectRepository } from '@nestjs/typeorm';
+import { InjectModel } from '@nestjs/sequelize';
+import { Sale } from './model/sale.model';
 
 @Injectable()
 export class SalesService {
-  constructor(
-    @InjectRepository(Sale) private saleRepository: Repository<Sale>,
-  ) {}
+  constructor(@InjectModel(Sale) private saleModel: typeof Sale) {}
   create(createSaleDto: CreateSaleDto) {
-    return this.saleRepository.save(createSaleDto);
+    return 'This action adds a new sale';
   }
 
   findAll() {
-    return `This action returns all sales`;
+    return this.saleModel.findAll();
   }
 
   findOne(id: number) {
