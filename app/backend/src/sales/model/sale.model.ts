@@ -1,5 +1,12 @@
-import { Column, ForeignKey, Table, Model } from 'sequelize-typescript';
+import {
+  Column,
+  ForeignKey,
+  Table,
+  Model,
+  BelongsToMany,
+} from 'sequelize-typescript';
 import { Product } from 'src/products/model/product.model';
+import { Sales_Products } from 'src/sales_products/entities/sales_products.model';
 import { User } from 'src/user/model/user.model';
 import { ManyToMany } from 'typeorm';
 
@@ -31,6 +38,9 @@ export class Sale extends Model {
   @Column
   seller_id: number;
 
-  @ManyToMany(() => Product, () => Sale)
-  products: Product[];
+  @BelongsToMany(() => Product, () => Sales_Products)
+  sales: Sale[];
+
+  // @ManyToMany(() => Product, () => Sale)
+  // products: Product[];
 }

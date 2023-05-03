@@ -4,9 +4,10 @@ import {
   PrimaryKey,
   Table,
   Model,
+  BelongsToMany,
 } from 'sequelize-typescript';
 import { Sale } from 'src/sales/model/sale.model';
-import { ManyToMany } from 'typeorm';
+import { Sales_Products } from 'src/sales_products/entities/sales_products.model';
 
 @Table
 export class Product extends Model {
@@ -24,6 +25,9 @@ export class Product extends Model {
   @Column
   url_image: string;
 
-  @ManyToMany(() => Sale, () => Product)
+  // @ManyToMany(() => Sale, () => Product)
+  // sales: Sale[];
+
+  @BelongsToMany(() => Sale, () => Sales_Products)
   sales: Sale[];
 }
