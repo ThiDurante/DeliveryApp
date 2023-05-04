@@ -44,7 +44,7 @@ let UserService = class UserService {
         return `This action updates a #${id} user`;
     }
     remove(id) {
-        return `This action removes a #${id} user`;
+        return this.userModel.destroy({ where: { id } });
     }
 };
 UserService = __decorate([

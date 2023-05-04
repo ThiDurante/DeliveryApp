@@ -1,0 +1,26 @@
+.container-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.login-form {
+  border: 1px black solid;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(233, 227, 218, 0.89);
+}
+
+.login-button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 150px;
+}
+
+.createacc-button {
+  width: 200px;
+}

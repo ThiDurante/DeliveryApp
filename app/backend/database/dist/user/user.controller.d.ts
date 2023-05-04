@@ -8,5 +8,5 @@ export declare class UserController {
     findAll(): Promise<import("./model/user.model").User[]>;
     findOne(id: string): Promise<import("./model/user.model").User>;
     update(id: string, updateUserDto: UpdateUserDto): string;
-    remove(id: string): string;
+    remove(id: string): Promise<number>;
 }

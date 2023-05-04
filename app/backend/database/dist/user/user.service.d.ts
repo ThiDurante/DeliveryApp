@@ -9,5 +9,5 @@ export declare class UserService {
     findById(id: number): Promise<User>;
     findByEmail(email: string): Promise<User>;
     update(id: number, updateUserDto: UpdateUserDto): string;
-    remove(id: number): string;
+    remove(id: number): Promise<number>;
 }

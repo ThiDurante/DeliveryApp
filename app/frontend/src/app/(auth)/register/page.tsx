@@ -27,8 +27,8 @@ export default function Register () {
     )
     if(response.ok) {
       const responseJson = await response.json();
-      localStorage.setItem('token', responseJson.token)
-      localStorage.setItem('user', JSON.stringify(responseJson.user))
+      const userData = {...responseJson.user, token: responseJson.token}
+      localStorage.setItem('userdata', JSON.stringify(userData))
       push('client/products')
     } else {
       console.log(await response.json());
