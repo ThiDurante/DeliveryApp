@@ -3,10 +3,11 @@
 import { useRouter } from 'next/navigation'
 import { AppBar, Button, IconButton, Stack, Toolbar, Typography } from '@mui/material'
 
-export default function Navbar () {
+export function Navbar () {
   const { push } = useRouter()
+  console.log('before');
+  
   const user = JSON.parse(localStorage.getItem('userdata') || '{}')
-  console.log(user);
   
   return (
     <div>
