@@ -8,7 +8,6 @@ import {
 import { Product } from 'src/products/model/product.model';
 import { Sales_Products } from 'src/sales_products/entities/sales_products.model';
 import { User } from 'src/user/model/user.model';
-import { ManyToMany } from 'typeorm';
 
 @Table
 export class Sale extends Model {

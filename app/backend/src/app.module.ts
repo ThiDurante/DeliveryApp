@@ -10,7 +10,7 @@ import { Sale } from './sales/model/sale.model';
 import { Product } from './products/model/product.model';
 import { Sales_ProductsModule } from './sales_products/entities/sales_products.module';
 import { Sales_Products } from './sales_products/entities/sales_products.model';
-// import { Sales_Products } from './sales_products/entities/sales_products.model';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -32,6 +32,7 @@ import { Sales_Products } from './sales_products/entities/sales_products.model';
     ProductsModule,
     SalesModule,
     Sales_ProductsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
