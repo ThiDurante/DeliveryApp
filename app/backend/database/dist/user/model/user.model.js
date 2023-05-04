@@ -31,6 +31,7 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
 __decorate([
+    (0, sequelize_typescript_1.Default)('customer'),
     sequelize_typescript_1.Column,
     __metadata("design:type", String)
 ], User.prototype, "role", void 0);

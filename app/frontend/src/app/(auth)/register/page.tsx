@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 interface FormValues {
@@ -12,6 +13,7 @@ export default function Register () {
   const [formValues, setFormValues] = useState<FormValues>({email:'', password:'', name:''})
   const [failedRegister, setFailedRegister] = useState(false)
   const [failedMessage, setFailedMessage] = useState('')
+  const { push } = useRouter()
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const { email, password, name } = formValues
@@ -27,8 +29,7 @@ export default function Register () {
       const responseJson = await response.json();
       localStorage.setItem('token', responseJson.token)
       localStorage.setItem('user', JSON.stringify(responseJson.user))
-      //client should be dinamic
-      // redirect(`/${responseJson.user.id}/products`)
+      push('client/products')
     } else {
       console.log(await response.json());
     }

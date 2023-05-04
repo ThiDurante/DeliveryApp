@@ -1,4 +1,4 @@
-import { Column, Table, Model, HasMany } from 'sequelize-typescript';
+import { Column, Table, Model, HasMany, Default } from 'sequelize-typescript';
 import { Sale } from 'src/sales/model/sale.model';
 
 @Table
@@ -15,6 +15,7 @@ export class User extends Model {
   @Column
   password: string;
 
+  @Default('customer')
   @Column
   role: string;
 

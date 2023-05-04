@@ -31,9 +31,7 @@ export default function LoginForm () {
       const responseJson = await response.json();
       localStorage.setItem('token', responseJson.token)
       localStorage.setItem('user', JSON.stringify(responseJson.user))
-      
-      //client should be dinamic
-      push(`/${responseJson.user.id}/products`)
+      if(responseJson.user.role === 'customer') push('/client/products')
     } else {
       console.log(await response.json());
       setFailedLogin(true)
