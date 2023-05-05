@@ -8,33 +8,36 @@ import {
   Typography,
 } from '@mui/material';
 import { useState } from 'react';
+import { useProductContext } from '../Context/store';
+import { Product } from '../customer/products/page';
 
-export function ProductCard({ product }: any) {
-  const cart = JSON.parse(localStorage.getItem('cart') || '{}');
+export function ProductCard({ product }: { product: Product }) {
+  const { cart, setCart } = useProductContext();
+  const [quantity, setQuantity] = useState(cart[product.id] || 0);
 
-  const [quantity, setQuantity] = useState(cart[product.quantity] || 0);
   const handleIncrement = () => {
-    const cart = JSON.parse(localStorage.getItem('cart') || '{}');
-
     setQuantity(quantity + 1);
     const newCart = { ...cart, [product.id]: quantity + 1 };
-    localStorage.setItem('cart', JSON.stringify(newCart));
+    setCart(newCart);
   };
 
   const handleDecrement = () => {
-    const cart = JSON.parse(localStorage.getItem('cart') || '{}');
-
     if (quantity > 1) {
       setQuantity(quantity - 1);
       const newCart = { ...cart, [product.id]: quantity - 1 };
-      localStorage.setItem('cart', JSON.stringify(newCart));
+      setCart(newCart);
     } else {
-      delete cart[product.id];
-      localStorage.setItem('cart', JSON.stringify(cart));
+      const newCart = { ...cart };
+      delete newCart[product.id];
+      setCart(newCart);
+      setQuantity(0);
     }
   };
+
+  const handleCartChange = () => {};
+
   return (
-    <Card sx={{ maxWidth: 375, maxHeight: 357 }}>
+    <Card onClick={handleCartChange} sx={{ maxWidth: 375, maxHeight: 357 }}>
       <CardActionArea>
         <CardMedia
           component="img"

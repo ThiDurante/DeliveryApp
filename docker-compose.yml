@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  db:
+    image: mysql
+    container_name: DeliverApp_db
+    restart: always
+    ports:
+      - 3306:3306
+      - 33060:33060
+    environment:
+      MYSQL_ROOT_PASSWORD: password
