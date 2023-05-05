@@ -9,13 +9,21 @@ import {
   Toolbar,
   Typography,
 } from '@mui/material';
+import { useProductContext } from '../Context/store';
+import { useEffect, useState } from 'react';
+
+type UserData = {
+  name: string;
+};
 
 export function Navbar() {
   const { push } = useRouter();
+  const { user } = useProductContext() as { user: UserData };
+  const [userLoaded, setUserLoaded] = useState(false);
 
-  console.log(localStorage.getItem('userdata'));
-
-  const user = JSON.parse(localStorage.getItem('userdata') || '{}');
+  useEffect(() => {
+    if (user) setUserLoaded(true);
+  }, [user]);
 
   return (
     <div>
@@ -35,7 +43,7 @@ export function Navbar() {
               My Orders
             </Button>
             <Button onClick={() => push('/profile')} color="inherit">
-              {user.name}
+              {userLoaded && user.name}
             </Button>
             <Button onClick={() => push('/logout')} color="inherit">
               Logout

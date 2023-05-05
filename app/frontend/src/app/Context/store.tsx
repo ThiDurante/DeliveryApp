@@ -1,5 +1,3 @@
-'use client';
-
 import {
   Dispatch,
   SetStateAction,
@@ -20,11 +18,21 @@ interface cartItem {
   [key: number]: number;
 }
 
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  password: string;
+  role: string;
+}
+
 interface ContextProps {
   products: Product[];
   setProducts: Dispatch<SetStateAction<Product[]>>;
   cart: cartItem;
   setCart: Dispatch<SetStateAction<cartItem>>;
+  user: User;
+  setUser: Dispatch<SetStateAction<User>>;
 }
 
 const ProductContext = createContext<ContextProps>({
@@ -32,6 +40,8 @@ const ProductContext = createContext<ContextProps>({
   setProducts: (): Product[] => [],
   cart: {},
   setCart: (): cartItem => [],
+  user: { id: 0, name: '', email: '', password: '', role: '' },
+  setUser: (): User => ({ id: 0, name: '', email: '', password: '', role: '' }),
 });
 
 export const ProductContextProvider = ({ children }: any) => {
@@ -45,13 +55,23 @@ export const ProductContextProvider = ({ children }: any) => {
     }
     return {};
   });
+  const [user, setUser] = useState<User>(() => {
+    if (typeof window !== 'undefined') {
+      const userData = localStorage.getItem('userdata');
+      if (userData) {
+        return JSON.parse(userData);
+      }
+    }
+  });
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
 
   return (
-    <ProductContext.Provider value={{ products, setProducts, cart, setCart }}>
+    <ProductContext.Provider
+      value={{ products, setProducts, cart, setCart, user, setUser }}
+    >
       {children}
     </ProductContext.Provider>
   );

@@ -4,6 +4,7 @@ import { CheckoutProduct } from '@/app/components/CheckoutProduct';
 import { Navbar } from '@/app/components/NavBar';
 import { ProductCard } from '@/app/components/ProductCard';
 import { useEffect, useState } from 'react';
+import '../../CSS/CustomerProduct.css';
 
 export interface Product {
   id: number;
@@ -37,11 +38,13 @@ export default function CustomerProducts() {
 
   return (
     <div>
-      {/* <Navbar /> */}
-      {products.length > 0 &&
-        products.map((product: any) => {
-          return <ProductCard key={product.id} product={product} />;
-        })}
+      <Navbar />
+      <div className="product-card-container">
+        {products.length > 0 &&
+          products.map((product: any) => {
+            return <ProductCard key={product.id} product={product} />;
+          })}
+      </div>
       {products.length > 0 && <CheckoutProduct />}
     </div>
   );

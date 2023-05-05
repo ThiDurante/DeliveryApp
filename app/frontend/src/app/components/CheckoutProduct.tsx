@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import { useProductContext } from '../Context/store';
+import { Button } from '@mui/material';
+import { useRouter } from 'next/navigation';
+import '../CSS/CustomerProduct.css';
 
 interface Product {
   id: number;
@@ -13,6 +16,7 @@ interface Product {
 export function CheckoutProduct() {
   const [priceTotal, setPriceTotal] = useState(0);
   const { products, cart } = useProductContext();
+  const { push } = useRouter();
 
   const sumPrices = (): number => {
     const arrOfCart = Object.entries(cart);
@@ -33,5 +37,15 @@ export function CheckoutProduct() {
   }, [products, cart]);
 
   if (!products) return <div>Checkout: R$0</div>;
-  return <div>Checkout: R${priceTotal}</div>;
+  return (
+    <div>
+      <Button
+        className="checkout-btn"
+        onClick={() => push('/customer/checkout')}
+        variant="contained"
+      >
+        Checkout: R${priceTotal}
+      </Button>
+    </div>
+  );
 }
