@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import '../CSS/CustomerProduct.css';
 import '../CSS/CheckoutPage.css';
 import CloseIcon from '@mui/icons-material/Close';
+import { OrderItem } from './OrderItem';
 
 interface Product {
   id: number;
@@ -134,25 +135,35 @@ export function CheckoutProduct() {
                   const product = products.find((p) => +item[0] === +p.id);
 
                   return (
-                    <tr key={index}>
-                      <td className="checkout-item">{index + 1}</td>
-                      <td className="checkout-desc">{product?.name}</td>
-                      <td className="checkout-quant">{item[1]}</td>
-                      <td className="checkout-unit">R${product?.price}</td>
-                      <td className="checkout-total">
-                        R$
-                        {product?.price
-                          ? (product.price * Number(item[1])).toFixed(2)
-                          : 0}
-                      </td>
-                      <td
-                        onClick={() => handleRemove(product?.id)}
-                        className="checkout-remove"
-                      >
-                        Remove
-                      </td>
-                    </tr>
+                    <OrderItem
+                      key={index}
+                      index={index}
+                      product={product}
+                      item={item}
+                      handleRemove={handleRemove}
+                    />
                   );
+
+                  // (
+                  //   <tr key={index}>
+                  //     <td className="checkout-item">{index + 1}</td>
+                  //     <td className="checkout-desc">{product?.name}</td>
+                  //     <td className="checkout-quant">{item[1]}</td>
+                  //     <td className="checkout-unit">R${product?.price}</td>
+                  //     <td className="checkout-total">
+                  //       R$
+                  //       {product?.price
+                  //         ? (product.price * Number(item[1])).toFixed(2)
+                  //         : 0}
+                  //     </td>
+                  //     <td
+                  //       onClick={() => handleRemove(product?.id)}
+                  //       className="checkout-remove"
+                  //     >
+                  //       Remove
+                  //     </td>
+                  //   </tr>
+                  // );
                 })}
               </tbody>
             </table>
