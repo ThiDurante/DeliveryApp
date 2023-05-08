@@ -4,7 +4,7 @@ import { UpdateSaleDto } from './dto/update-sale.dto';
 export declare class SalesController {
     private readonly salesService;
     constructor(salesService: SalesService);
-    create(createSaleDto: CreateSaleDto): string;
+    create(createSaleDto: CreateSaleDto): Promise<import("./model/sale.model").Sale>;
     findAll(): Promise<import("./model/sale.model").Sale[]>;
     findOne(id: string): string;
     update(id: string, updateSaleDto: UpdateSaleDto): string;

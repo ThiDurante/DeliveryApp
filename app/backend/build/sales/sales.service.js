@@ -21,7 +21,8 @@ let SalesService = class SalesService {
         this.saleModel = saleModel;
     }
     create(createSaleDto) {
-        return 'This action adds a new sale';
+        console.log(createSaleDto);
+        return this.saleModel.create(Object.assign({}, createSaleDto));
     }
     findAll() {
         return this.saleModel.findAll();

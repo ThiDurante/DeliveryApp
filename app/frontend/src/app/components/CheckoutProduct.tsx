@@ -30,7 +30,7 @@ export function CheckoutProduct() {
   const [fullPage, setFullPage] = useState(false);
   const { products, cart, setCart } = useProductContext();
   const { push } = useRouter();
-  const [address, setAddress] = useState({ Street: '', Number: '' });
+  const [address, setAddress] = useState({ Address: '', Number: '' });
 
   const handleAddress = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAddress({ ...address, [e.target.name]: e.target.value });
@@ -73,7 +73,7 @@ export function CheckoutProduct() {
     const sale = {
       total_price: priceTotal,
       user_id: user.id,
-      delivery_address: address.Street,
+      delivery_address: address.Address,
       delivery_number: address.Number,
       sale_date: new Date().toLocaleDateString(),
       status: 'Pending',
@@ -83,11 +83,15 @@ export function CheckoutProduct() {
   };
 
   const submitSale = async (sale: Sale) => {
-    const response = await fetch('http://localhost:3001/sales', {
+    console.log(sale);
+
+    const response = await fetch('http://localhost:3001/api/sales', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(sale),
     });
+    console.log(response);
+
     if (response.ok) {
       push('/payment');
     } else {

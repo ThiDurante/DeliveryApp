@@ -4,7 +4,7 @@ import { Sale } from './model/sale.model';
 export declare class SalesService {
     private saleModel;
     constructor(saleModel: typeof Sale);
-    create(createSaleDto: CreateSaleDto): string;
+    create(createSaleDto: CreateSaleDto): Promise<Sale>;
     findAll(): Promise<Sale[]>;
     findOne(id: number): string;
     update(id: number, updateSaleDto: UpdateSaleDto): string;

@@ -8,7 +8,11 @@ import { Sale } from './model/sale.model';
 export class SalesService {
   constructor(@InjectModel(Sale) private saleModel: typeof Sale) {}
   create(createSaleDto: CreateSaleDto) {
-    return 'This action adds a new sale';
+    console.log(createSaleDto);
+
+    return this.saleModel.create({
+      ...createSaleDto,
+    });
   }
 
   findAll() {
