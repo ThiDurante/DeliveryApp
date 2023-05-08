@@ -15,11 +15,26 @@ interface Product {
   url_image: string;
 }
 
+interface Sale {
+  total_price: number;
+  user_id: number;
+  delivery_address: string;
+  delivery_number: string;
+  sale_date: string;
+  status: string;
+  seller_id: number;
+}
+
 export function CheckoutProduct() {
   const [priceTotal, setPriceTotal] = useState(0);
   const [fullPage, setFullPage] = useState(false);
   const { products, cart, setCart } = useProductContext();
   const { push } = useRouter();
+  const [address, setAddress] = useState({ Street: '', Number: '' });
+
+  const handleAddress = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAddress({ ...address, [e.target.name]: e.target.value });
+  };
 
   const handleRemove = (id: number | undefined) => {
     if (id) {
@@ -50,7 +65,34 @@ export function CheckoutProduct() {
 
   const handleCheckout = () => {
     // organize all the data to insert a new sale
-    push('/payment');
+    const user = JSON.parse(localStorage.getItem('userdata') || '{}');
+    if (user !== null && !user.id) {
+      alert('Please, log in to proceed');
+      push('/logout');
+    }
+    const sale = {
+      total_price: priceTotal,
+      user_id: user.id,
+      delivery_address: address.Street,
+      delivery_number: address.Number,
+      sale_date: new Date().toLocaleDateString(),
+      status: 'Pending',
+      seller_id: 1,
+    };
+    return submitSale(sale);
+  };
+
+  const submitSale = async (sale: Sale) => {
+    const response = await fetch('http://localhost:3001/sales', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(sale),
+    });
+    if (response.ok) {
+      push('/payment');
+    } else {
+      alert('Something went wrong, please try again');
+    }
   };
 
   useEffect(() => {
@@ -110,6 +152,19 @@ export function CheckoutProduct() {
                 })}
               </tbody>
             </table>
+          </div>
+          <div>
+            <h3>Details and Address</h3>
+            <div className="checkout-address">
+              <label htmlFor="Address">
+                Address:
+                <input type="text" name="Address" onChange={handleAddress} />
+              </label>
+              <label htmlFor="Number">
+                Number:
+                <input type="text" name="Number" onChange={handleAddress} />
+              </label>
+            </div>
           </div>
           <Button
             className="checkout-full"
