@@ -18,7 +18,6 @@ export class AuthService {
     const user = await this.usersService.findByEmail(email);
 
     if (!user) throw new UnauthorizedException('Email not found');
-    console.log(pass, user.password);
     const checkPassword = await comparePassword(pass, user.password);
 
     if (!checkPassword) {

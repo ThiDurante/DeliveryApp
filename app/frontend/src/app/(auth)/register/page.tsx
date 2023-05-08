@@ -21,20 +21,23 @@ export default function Register() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const { email, password, name } = formValues;
-    const response = await fetch('http://localhost:3001/api/auth/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password, name }),
-    });
-    if (response.ok) {
+    try {
+      const response = await fetch('http://localhost:3001/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password, name }),
+      });
+      if (!response.ok) throw new Error(response.statusText);
       const responseJson = await response.json();
       const userData = { ...responseJson.user, token: responseJson.token };
       localStorage.setItem('userdata', JSON.stringify(userData));
       push('customer/products');
-    } else {
-      console.log(await response.json());
+    } catch (error: any) {
+      console.log(error);
+      setFailedRegister(true);
+      setFailedMessage(error.message);
     }
   };
   return (
@@ -73,7 +76,7 @@ export default function Register() {
         />
         <button type="submit">Register </button>
       </form>
-      {failedRegister && <p>Failed to register</p>}
+      {failedRegister && <p>{failedMessage}</p>}
     </div>
   );
 }

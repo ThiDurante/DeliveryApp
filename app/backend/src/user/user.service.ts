@@ -9,7 +9,6 @@ import { hashPassword } from 'src/utils/bcryp';
 export class UserService {
   constructor(@InjectModel(User) private userModel: typeof User) {}
   async insert(user: CreateUserDto) {
-    console.log(user);
     const encryptedUserPass = await hashPassword(user);
 
     return this.userModel.create({
@@ -33,7 +32,7 @@ export class UserService {
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+    return this.userModel.update(updateUserDto, { where: { id } });
   }
 
   remove(id: number) {
