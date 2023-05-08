@@ -24,7 +24,6 @@ export default function CustomerProducts() {
   const fetchProducts = async () => {
     const response = await fetch('http://localhost:3001/api/products');
     const data = await response.json();
-    console.log('inside effect', data);
 
     setProducts(data);
   };
@@ -32,7 +31,6 @@ export default function CustomerProducts() {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    console.log('productsChanges', products);
     if (products.length > 0) setLoaded(true);
   }, [products]);
 

@@ -23,8 +23,13 @@ let AuthController = class AuthController {
     signIn(signInDto) {
         return this.authService.signIn(signInDto.email, signInDto.password);
     }
-    create(user) {
-        return this.authService.register(user);
+    register(user) {
+        try {
+            return this.authService.register(user);
+        }
+        catch (error) {
+            throw new common_1.HttpException(error, 501);
+        }
     }
 };
 __decorate([
@@ -42,7 +47,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto]),
     __metadata("design:returntype", void 0)
-], AuthController.prototype, "create", null);
+], AuthController.prototype, "register", null);
 AuthController = __decorate([
     (0, common_1.Controller)('auth'),
     __metadata("design:paramtypes", [auth_service_1.AuthService])

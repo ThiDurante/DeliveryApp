@@ -1,4 +1,10 @@
-import { Body, Controller, HttpCode, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpCode,
+  HttpException,
+  Post,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from 'src/user/dto/create-user.dto';
 
@@ -18,7 +24,11 @@ export class AuthController {
 
   @Post('register')
   @HttpCode(201)
-  create(@Body() user: CreateUserDto) {
-    return this.authService.register(user);
+  register(@Body() user: CreateUserDto) {
+    try {
+      return this.authService.register(user);
+    } catch (error) {
+      throw new HttpException(error, 501);
+    }
   }
 }

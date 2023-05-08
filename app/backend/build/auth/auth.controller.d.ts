@@ -11,7 +11,7 @@ export declare class AuthController {
         user: import("../user/model/user.model").User;
         access_token: string;
     }>;
-    create(user: CreateUserDto): Promise<{
+    register(user: CreateUserDto): Promise<{
         user: import("../user/model/user.model").User;
         access_token: string;
     }>;

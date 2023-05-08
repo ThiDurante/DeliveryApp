@@ -40,7 +40,7 @@ let AuthService = class AuthService {
     async register(user) {
         const checkUser = await this.usersService.findByEmail(user.email);
         if (checkUser) {
-            throw new common_1.UnauthorizedException('User already exists');
+            throw new common_1.HttpException('Email already exists', common_1.HttpStatus.CONFLICT);
         }
         const newUser = await this.usersService.insert(user);
         const payload = {

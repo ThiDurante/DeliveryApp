@@ -35,9 +35,12 @@ export default function Register() {
       localStorage.setItem('userdata', JSON.stringify(userData));
       push('customer/products');
     } catch (error: any) {
-      console.log(error);
       setFailedRegister(true);
-      setFailedMessage(error.message);
+      setFailedMessage(
+        error.message === 'Conflict'
+          ? 'Email already exists'
+          : 'Please fill all the fields',
+      );
     }
   };
   return (
@@ -68,7 +71,7 @@ export default function Register() {
         <input
           type="name"
           placeholder="name"
-          pattern=".{6,15}"
+          pattern=".{3,15}"
           title="Minimun of 6, maximum of 15 characters"
           onChange={(event: React.ChangeEvent<HTMLInputElement>): void =>
             setFormValues({ ...formValues, name: event.target.value })
