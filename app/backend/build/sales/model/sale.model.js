@@ -51,6 +51,10 @@ __decorate([
     __metadata("design:type", Number)
 ], Sale.prototype, "seller_id", void 0);
 __decorate([
+    (0, sequelize_typescript_1.BelongsTo)(() => user_model_1.User, 'user_id'),
+    __metadata("design:type", user_model_1.User)
+], Sale.prototype, "user", void 0);
+__decorate([
     (0, sequelize_typescript_1.BelongsToMany)(() => product_model_1.Product, () => sales_products_model_1.Sales_Products),
     __metadata("design:type", Array)
 ], Sale.prototype, "sales", void 0);

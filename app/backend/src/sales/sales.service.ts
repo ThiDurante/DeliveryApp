@@ -3,6 +3,7 @@ import { CreateSaleDto } from './dto/create-sale.dto';
 import { UpdateSaleDto } from './dto/update-sale.dto';
 import { InjectModel } from '@nestjs/sequelize';
 import { Sale } from './model/sale.model';
+import { User } from 'src/user/model/user.model';
 
 @Injectable()
 export class SalesService {
@@ -16,7 +17,7 @@ export class SalesService {
   }
 
   findAll() {
-    return this.saleModel.findAll();
+    return this.saleModel.findAll({ include: [User] });
   }
 
   findOne(id: number) {

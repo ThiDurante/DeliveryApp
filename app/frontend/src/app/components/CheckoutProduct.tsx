@@ -113,9 +113,10 @@ export function CheckoutProduct() {
           <div className="checkout-header">
             <h3>Checkout</h3>
             <div className="checkout-close">
-              <CloseIcon className="checkout-close-icon" onClick={handleClose}>
-                X
-              </CloseIcon>
+              <CloseIcon
+                className="checkout-close-icon"
+                onClick={handleClose}
+              />
             </div>
           </div>
           <div className="products-checkout">
@@ -133,7 +134,6 @@ export function CheckoutProduct() {
               <tbody>
                 {Object.entries(cart).map((item, index) => {
                   const product = products.find((p) => +item[0] === +p.id);
-
                   return (
                     <OrderItem
                       key={index}
@@ -143,27 +143,6 @@ export function CheckoutProduct() {
                       handleRemove={handleRemove}
                     />
                   );
-
-                  // (
-                  //   <tr key={index}>
-                  //     <td className="checkout-item">{index + 1}</td>
-                  //     <td className="checkout-desc">{product?.name}</td>
-                  //     <td className="checkout-quant">{item[1]}</td>
-                  //     <td className="checkout-unit">R${product?.price}</td>
-                  //     <td className="checkout-total">
-                  //       R$
-                  //       {product?.price
-                  //         ? (product.price * Number(item[1])).toFixed(2)
-                  //         : 0}
-                  //     </td>
-                  //     <td
-                  //       onClick={() => handleRemove(product?.id)}
-                  //       className="checkout-remove"
-                  //     >
-                  //       Remove
-                  //     </td>
-                  //   </tr>
-                  // );
                 })}
               </tbody>
             </table>

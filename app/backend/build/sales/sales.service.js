@@ -16,6 +16,7 @@ exports.SalesService = void 0;
 const common_1 = require("@nestjs/common");
 const sequelize_1 = require("@nestjs/sequelize");
 const sale_model_1 = require("./model/sale.model");
+const user_model_1 = require("../user/model/user.model");
 let SalesService = class SalesService {
     constructor(saleModel) {
         this.saleModel = saleModel;
@@ -25,7 +26,7 @@ let SalesService = class SalesService {
         return this.saleModel.create(Object.assign({}, createSaleDto));
     }
     findAll() {
-        return this.saleModel.findAll();
+        return this.saleModel.findAll({ include: [user_model_1.User] });
     }
     findOne(id) {
         return `This action returns a #${id} sale`;

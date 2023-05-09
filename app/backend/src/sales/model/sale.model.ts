@@ -4,6 +4,7 @@ import {
   Table,
   Model,
   BelongsToMany,
+  BelongsTo,
 } from 'sequelize-typescript';
 import { Product } from 'src/products/model/product.model';
 import { Sales_Products } from 'src/sales_products/entities/sales_products.model';
@@ -37,9 +38,9 @@ export class Sale extends Model {
   @Column
   seller_id: number;
 
+  @BelongsTo(() => User, 'user_id')
+  user: User;
+
   @BelongsToMany(() => Product, () => Sales_Products)
   sales: Sale[];
-
-  // @ManyToMany(() => Product, () => Sale)
-  // products: Product[];
 }

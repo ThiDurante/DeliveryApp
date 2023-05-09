@@ -1,4 +1,5 @@
 import { Model } from 'sequelize-typescript';
+import { User } from 'src/user/model/user.model';
 export declare class Sale extends Model {
     id: number;
     total_price: number;
@@ -8,5 +9,6 @@ export declare class Sale extends Model {
     status: string;
     user_id: number;
     seller_id: number;
+    user: User;
     sales: Sale[];
 }
