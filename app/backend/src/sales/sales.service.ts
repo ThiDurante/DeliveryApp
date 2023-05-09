@@ -21,14 +21,14 @@ export class SalesService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} sale`;
+    return this.saleModel.findOne({ where: { id }, include: [User] });
   }
 
   update(id: number, updateSaleDto: UpdateSaleDto) {
-    return `This action updates a #${id} sale`;
+    return this.saleModel.update(updateSaleDto, { where: { id } });
   }
 
   remove(id: number) {
-    return `This action removes a #${id} sale`;
+    return this.saleModel.destroy({ where: { id } });
   }
 }

@@ -29,13 +29,13 @@ let SalesService = class SalesService {
         return this.saleModel.findAll({ include: [user_model_1.User] });
     }
     findOne(id) {
-        return `This action returns a #${id} sale`;
+        return this.saleModel.findOne({ where: { id }, include: [user_model_1.User] });
     }
     update(id, updateSaleDto) {
-        return `This action updates a #${id} sale`;
+        return this.saleModel.update(updateSaleDto, { where: { id } });
     }
     remove(id) {
-        return `This action removes a #${id} sale`;
+        return this.saleModel.destroy({ where: { id } });
     }
 };
 SalesService = __decorate([

@@ -6,7 +6,7 @@ export declare class SalesController {
     constructor(salesService: SalesService);
     create(createSaleDto: CreateSaleDto): Promise<import("./model/sale.model").Sale>;
     findAll(): Promise<import("./model/sale.model").Sale[]>;
-    findOne(id: string): string;
-    update(id: string, updateSaleDto: UpdateSaleDto): string;
-    remove(id: string): string;
+    findOne(id: string): Promise<import("./model/sale.model").Sale>;
+    update(id: string, updateSaleDto: UpdateSaleDto): Promise<[affectedCount: number]>;
+    remove(id: string): Promise<number>;
 }

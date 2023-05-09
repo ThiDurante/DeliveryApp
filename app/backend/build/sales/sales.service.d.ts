@@ -6,7 +6,7 @@ export declare class SalesService {
     constructor(saleModel: typeof Sale);
     create(createSaleDto: CreateSaleDto): Promise<Sale>;
     findAll(): Promise<Sale[]>;
-    findOne(id: number): string;
-    update(id: number, updateSaleDto: UpdateSaleDto): string;
-    remove(id: number): string;
+    findOne(id: number): Promise<Sale>;
+    update(id: number, updateSaleDto: UpdateSaleDto): Promise<[affectedCount: number]>;
+    remove(id: number): Promise<number>;
 }
