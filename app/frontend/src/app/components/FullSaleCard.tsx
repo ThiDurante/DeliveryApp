@@ -14,9 +14,11 @@ interface Sale {
 export default function FullSaleCard({
   index,
   sale,
+  handleOrder,
 }: {
   index: number;
   sale: Sale;
+  handleOrder: (sale: Sale) => void;
 }) {
   const date = new Date(sale.sale_date);
   const options: Intl.DateTimeFormatOptions = {
@@ -40,7 +42,7 @@ export default function FullSaleCard({
     }
   };
   return (
-    <div className="order-card">
+    <div className="order-card" onClick={() => handleOrder(sale)}>
       <div className="order-order">
         <div>Order</div>
         <div className="order-index">{index + 1}</div>
