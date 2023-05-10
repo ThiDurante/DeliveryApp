@@ -25,6 +25,11 @@ export class SalesController {
     return this.salesService.findAll();
   }
 
+  @Get('user/:user_id')
+  findByUser(@Param('user_id') user_id: string) {
+    return this.salesService.findByUser(+user_id);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.salesService.findOne(+id);

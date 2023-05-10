@@ -27,6 +27,9 @@ let SalesController = class SalesController {
     findAll() {
         return this.salesService.findAll();
     }
+    findByUser(user_id) {
+        return this.salesService.findByUser(+user_id);
+    }
     findOne(id) {
         return this.salesService.findOne(+id);
     }
@@ -50,6 +53,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], SalesController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Get)('user/:user_id'),
+    __param(0, (0, common_1.Param)('user_id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], SalesController.prototype, "findByUser", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),

@@ -44,11 +44,6 @@ __decorate([
     (0, sequelize_typescript_1.ForeignKey)(() => user_model_1.User),
     sequelize_typescript_1.Column,
     __metadata("design:type", Number)
-], Sale.prototype, "user_id", void 0);
-__decorate([
-    (0, sequelize_typescript_1.ForeignKey)(() => user_model_1.User),
-    sequelize_typescript_1.Column,
-    __metadata("design:type", Number)
 ], Sale.prototype, "seller_id", void 0);
 __decorate([
     (0, sequelize_typescript_1.BelongsTo)(() => user_model_1.User, 'user_id'),

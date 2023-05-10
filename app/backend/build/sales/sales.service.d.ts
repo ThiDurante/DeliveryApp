@@ -7,6 +7,7 @@ export declare class SalesService {
     create(createSaleDto: CreateSaleDto): Promise<Sale>;
     findAll(): Promise<Sale[]>;
     findOne(id: number): Promise<Sale>;
+    findByUser(user_id: number): Promise<Sale[]>;
     update(id: number, updateSaleDto: UpdateSaleDto): Promise<[affectedCount: number]>;
     remove(id: number): Promise<number>;
 }

@@ -31,6 +31,9 @@ let SalesService = class SalesService {
     findOne(id) {
         return this.saleModel.findOne({ where: { id }, include: [user_model_1.User] });
     }
+    findByUser(user_id) {
+        return this.saleModel.findAll({ where: { user_id }, include: [user_model_1.User] });
+    }
     update(id, updateSaleDto) {
         return this.saleModel.update(updateSaleDto, { where: { id } });
     }

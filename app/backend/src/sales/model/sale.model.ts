@@ -32,10 +32,6 @@ export class Sale extends Model {
 
   @ForeignKey(() => User)
   @Column
-  user_id: number;
-
-  @ForeignKey(() => User)
-  @Column
   seller_id: number;
 
   @BelongsTo(() => User, 'user_id')

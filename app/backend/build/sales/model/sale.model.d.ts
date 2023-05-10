@@ -7,7 +7,6 @@ export declare class Sale extends Model {
     delivery_number: string;
     sale_date: Date;
     status: string;
-    user_id: number;
     seller_id: number;
     user: User;
     sales: Sale[];

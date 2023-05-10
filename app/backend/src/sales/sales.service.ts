@@ -24,6 +24,10 @@ export class SalesService {
     return this.saleModel.findOne({ where: { id }, include: [User] });
   }
 
+  findByUser(user_id: number) {
+    return this.saleModel.findAll({ where: { user_id }, include: [User] });
+  }
+
   update(id: number, updateSaleDto: UpdateSaleDto) {
     return this.saleModel.update(updateSaleDto, { where: { id } });
   }
