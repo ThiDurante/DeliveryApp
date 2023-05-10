@@ -31,7 +31,15 @@ export default function OrderPainel({
             </thead>
             <tbody>
               {sale.sale.sales.map((product, index) => (
-                <OrderItem key={index} product={product} index={index} />
+                <OrderItem
+                  key={index}
+                  product={product}
+                  index={index}
+                  item={Object.values(
+                    sale.sale.sales.find((p) => +p.id === +product.id)
+                      ?.Sales_Products as any,
+                  ).splice(1)}
+                />
               ))}
             </tbody>
           </table>

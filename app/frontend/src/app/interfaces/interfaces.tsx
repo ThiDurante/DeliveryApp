@@ -14,6 +14,24 @@ export interface Product {
   name: string;
   price: number;
   url_image: string;
+  quantity: number;
+  Sales_Products?: {
+    quantity: number;
+    product_id: number;
+    sale_id: number;
+  };
+}
+export interface ProductWithSale {
+  id: number;
+  name: string;
+  price: number;
+  url_image: string;
+  quantity: number;
+  Sales_Products: {
+    quantity: number;
+    product_id: number;
+    sale_id: number;
+  };
 }
 
 export interface UserData {

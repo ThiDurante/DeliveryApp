@@ -8,14 +8,7 @@ import '../CSS/CustomerProduct.css';
 import '../CSS/CheckoutPage.css';
 import CloseIcon from '@mui/icons-material/Close';
 import { OrderItem } from './OrderItem';
-
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  url_image: string;
-  quantity: number;
-}
+import { Product } from '../interfaces/interfaces';
 
 interface Sale {
   total_price: number;
