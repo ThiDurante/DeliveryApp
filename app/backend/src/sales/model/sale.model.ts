@@ -38,5 +38,5 @@ export class Sale extends Model {
   user: User;
 
   @BelongsToMany(() => Product, () => Sales_Products)
-  sales: Sale[];
+  sales: Product[];
 }

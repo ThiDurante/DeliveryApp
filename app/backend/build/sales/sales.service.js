@@ -17,13 +17,30 @@ const common_1 = require("@nestjs/common");
 const sequelize_1 = require("@nestjs/sequelize");
 const sale_model_1 = require("./model/sale.model");
 const user_model_1 = require("../user/model/user.model");
+const product_model_1 = require("../products/model/product.model");
+const sales_products_model_1 = require("../sales_products/entities/sales_products.model");
 let SalesService = class SalesService {
     constructor(saleModel) {
         this.saleModel = saleModel;
     }
-    create(createSaleDto) {
+    async create(createSaleDto) {
         console.log(createSaleDto);
-        return this.saleModel.create(Object.assign({}, createSaleDto));
+        const sale = await this.saleModel.create(Object.assign({}, createSaleDto));
+        const sale_product = createSaleDto.sales.map((product) => {
+            return {
+                sale_id: sale.id,
+                product_id: product.id,
+                quantity: product.quantity,
+            };
+        });
+        await Promise.all(sale_product.map(async (product) => {
+            await sales_products_model_1.Sales_Products.create({
+                sale_id: sale.id,
+                product_id: product.product_id,
+                quantity: product.quantity,
+            });
+        }));
+        return sale;
     }
     findAll() {
         return this.saleModel.findAll({ include: [user_model_1.User] });
@@ -32,7 +49,10 @@ let SalesService = class SalesService {
         return this.saleModel.findOne({ where: { id }, include: [user_model_1.User] });
     }
     findByUser(user_id) {
-        return this.saleModel.findAll({ where: { user_id }, include: [user_model_1.User] });
+        return this.saleModel.findAll({
+            where: { user_id },
+            include: [user_model_1.User, product_model_1.Product],
+        });
     }
     update(id, updateSaleDto) {
         return this.saleModel.update(updateSaleDto, { where: { id } });

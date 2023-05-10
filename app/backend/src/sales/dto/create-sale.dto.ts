@@ -1,3 +1,5 @@
+import { Product } from 'src/products/model/product.model';
+
 export class CreateSaleDto {
   id: number;
   user_id: number;
@@ -7,4 +9,5 @@ export class CreateSaleDto {
   delivery_number: string;
   sale_date: Date;
   status: string;
+  sales: Product[];
 }

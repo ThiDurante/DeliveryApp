@@ -14,6 +14,7 @@ interface Product {
   name: string;
   price: number;
   url_image: string;
+  quantity: number;
 }
 
 interface Sale {
@@ -71,6 +72,16 @@ export function CheckoutProduct() {
       alert('Please, log in to proceed');
       push('/logout');
     }
+
+    const soldProducts = Object.entries(cart).map((item) => {
+      const sold = products.find((product) => +item[0] === +product.id);
+      if (sold) {
+        sold.quantity = +item[1];
+      }
+      return sold;
+    });
+    console.log(soldProducts);
+
     const sale = {
       total_price: priceTotal,
       user_id: user.id,
@@ -79,6 +90,7 @@ export function CheckoutProduct() {
       sale_date: new Date().toLocaleDateString(),
       status: 'Pending',
       seller_id: 1,
+      sales: soldProducts,
     };
     return submitSale(sale);
   };
@@ -94,7 +106,7 @@ export function CheckoutProduct() {
     console.log(response);
 
     if (response.ok) {
-      push('/payment');
+      // push('/payment');
     } else {
       alert('Something went wrong, please try again');
     }
