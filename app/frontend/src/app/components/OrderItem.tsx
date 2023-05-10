@@ -1,11 +1,5 @@
 import React from 'react';
-
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  url_image: string;
-}
+import { Product } from '../interfaces/interfaces';
 
 export function OrderItem({ item, index, handleRemove, product }: any) {
   return (

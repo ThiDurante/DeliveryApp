@@ -8,10 +8,23 @@ import OrderPainel from '@/app/components/OrderPainel';
 import { Sale, UserData } from '@/app/interfaces/interfaces';
 
 export default async function Orders() {
+  const inittialSaleState = {
+    id: 0,
+    status: '',
+    total_price: 0,
+    sale_date: '',
+    delivery_address: '',
+    delivery_number: '',
+    seller_id: 0,
+    sales: [],
+  };
   const { user } = useProductContext() as { user: UserData };
   const [openOrder, setOpenOrder] = useState(false);
   const [salesData, setSalesData] = useState<Sale[]>([]);
-  const [sale, setSale] = useState<Sale>();
+  const [sale, setSale] = useState<{ sale: Sale; index: number }>({
+    sale: inittialSaleState,
+    index: 0,
+  });
 
   useEffect(() => {
     fetchSales().then((data) => setSalesData(data));
@@ -24,9 +37,9 @@ export default async function Orders() {
     return salesData;
   };
 
-  const handleOrder = (sale: Sale) => {
+  const handleOrder = (sale: Sale, index: number) => {
     setOpenOrder(!openOrder);
-    setSale(sale);
+    setSale({ sale, index });
   };
 
   return (

@@ -1,15 +1,7 @@
 import React from 'react';
 import '../CSS/FullSaleCard.css';
-
-interface Sale {
-  id: number;
-  status: string;
-  total_price: number;
-  sale_date: string;
-  delivery_address: string;
-  delivery_number: string;
-  seller_id: number;
-}
+import dateFormat from './utils/dateFormat';
+import { Sale } from '../interfaces/interfaces';
 
 export default function FullSaleCard({
   index,
@@ -18,17 +10,17 @@ export default function FullSaleCard({
 }: {
   index: number;
   sale: Sale;
-  handleOrder: (sale: Sale) => void;
+  handleOrder: (sale: Sale, index: number) => void;
 }) {
-  const date = new Date(sale.sale_date);
-  const options: Intl.DateTimeFormatOptions = {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  };
+  // const date = new Date(sale.sale_date);
+  // const options: Intl.DateTimeFormatOptions = {
+  //   year: 'numeric',
+  //   month: '2-digit',
+  //   day: '2-digit',
+  // };
 
-  const formattedDate = date.toLocaleDateString(undefined, options);
-
+  // const formattedDate = date.toLocaleDateString(undefined, options);
+  const formattedDate = dateFormat(sale.sale_date);
   const statusColor = (status: string) => {
     switch (status) {
       case 'Pending':
@@ -42,7 +34,7 @@ export default function FullSaleCard({
     }
   };
   return (
-    <div className="order-card" onClick={() => handleOrder(sale)}>
+    <div className="order-card" onClick={() => handleOrder(sale, index)}>
       <div className="order-order">
         <div>Order</div>
         <div className="order-index">{index + 1}</div>

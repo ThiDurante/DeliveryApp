@@ -6,6 +6,14 @@ export interface Sale {
   delivery_address: string;
   delivery_number: string;
   seller_id: number;
+  sales: Product[];
+}
+
+export interface Product {
+  id: number;
+  name: string;
+  price: number;
+  url_image: string;
 }
 
 export interface UserData {
