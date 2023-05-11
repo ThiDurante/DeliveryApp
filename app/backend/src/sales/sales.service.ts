@@ -63,7 +63,7 @@ export class SalesService {
   }
 
   delivered(id: number) {
-    return this.saleModel.update({ status: 'delivered' }, { where: { id } });
+    return this.saleModel.update({ status: 'Delivered' }, { where: { id } });
   }
 
   remove(id: number) {

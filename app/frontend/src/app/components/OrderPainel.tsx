@@ -12,19 +12,12 @@ export default function OrderPainel({
 }) {
   const handleMarkDelivered = async () => {
     const saleId = sale.sale.id;
-    const response = await fetch(
-      `http://localhost:3001/api/sales/${saleId}/delivered`,
-      {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+    await fetch(`http://localhost:3001/api/sales/${saleId}/delivered`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
       },
-    );
-    const data = await response.json();
-    if (data) {
-      console.log(data);
-    }
+    });
   };
   return (
     <div>
