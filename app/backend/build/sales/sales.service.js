@@ -57,6 +57,9 @@ let SalesService = class SalesService {
     update(id, updateSaleDto) {
         return this.saleModel.update(updateSaleDto, { where: { id } });
     }
+    delivered(id) {
+        return this.saleModel.update({ status: 'delivered' }, { where: { id } });
+    }
     remove(id) {
         return this.saleModel.destroy({ where: { id } });
     }

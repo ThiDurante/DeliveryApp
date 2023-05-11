@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Put,
 } from '@nestjs/common';
 import { SalesService } from './sales.service';
 import { CreateSaleDto } from './dto/create-sale.dto';
@@ -23,6 +24,11 @@ export class SalesController {
   @Get()
   findAll() {
     return this.salesService.findAll();
+  }
+
+  @Put(':id/delivered')
+  delivered(@Param('id') id: string) {
+    return this.salesService.delivered(+id);
   }
 
   @Get('user/:user_id')

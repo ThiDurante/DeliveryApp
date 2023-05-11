@@ -142,6 +142,7 @@ export function CheckoutProduct() {
                   return (
                     <OrderItem
                       key={index}
+                      removeBtn={true}
                       index={index}
                       product={product}
                       item={item}

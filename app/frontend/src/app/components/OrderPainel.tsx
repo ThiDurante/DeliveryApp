@@ -4,12 +4,28 @@ import dateFormat from './utils/dateFormat';
 import { OrderItem } from './OrderItem';
 
 export default function OrderPainel({
+  backToSale,
   sale,
 }: {
+  backToSale: () => void;
   sale: { sale: Sale; index: number };
 }) {
-  console.log('painel', sale);
-  const handleMarkDelivered = async () => {};
+  const handleMarkDelivered = async () => {
+    const saleId = sale.sale.id;
+    const response = await fetch(
+      `http://localhost:3001/api/sales/${saleId}/delivered`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    );
+    const data = await response.json();
+    if (data) {
+      console.log(data);
+    }
+  };
   return (
     <div>
       Order Details
@@ -19,6 +35,7 @@ export default function OrderPainel({
           <div className="order-date">{dateFormat(sale.sale.sale_date)}</div>
           <div className="order-status">{sale.sale.status}</div>
           <button onClick={handleMarkDelivered}>Mark as Delivered</button>
+          <button onClick={() => backToSale()}>All Orders</button>
           <table>
             <thead>
               <tr>
@@ -33,6 +50,7 @@ export default function OrderPainel({
               {sale.sale.sales.map((product, index) => (
                 <OrderItem
                   key={index}
+                  removeBtn={false}
                   product={product}
                   index={index}
                   item={Object.values(

@@ -3,7 +3,7 @@ import { useProductContext } from '@/app/Context/store';
 import FullSaleCard from '@/app/components/FullSaleCard';
 import { Navbar } from '@/app/components/NavBar';
 import React, { useEffect, useState } from 'react';
-import '../../CSS/FullSaleCard.css';
+import '../../CSS/CheckoutPage.css';
 import OrderPainel from '@/app/components/OrderPainel';
 import { Sale, UserData } from '@/app/interfaces/interfaces';
 
@@ -29,6 +29,7 @@ export default async function Orders() {
   useEffect(() => {
     fetchSales().then((data) => setSalesData(data));
   }, []);
+
   const fetchSales = async () => {
     const sales = await fetch(
       `http://localhost:3001/api/sales/user/${user?.id}`,
@@ -40,6 +41,10 @@ export default async function Orders() {
   const handleOrder = (sale: Sale, index: number) => {
     setOpenOrder(!openOrder);
     setSale({ sale, index });
+  };
+
+  const backToSale = () => {
+    setOpenOrder(!openOrder);
   };
 
   return (
@@ -60,7 +65,7 @@ export default async function Orders() {
       ) : null}
       {openOrder ? (
         <div>
-          <OrderPainel sale={sale} />
+          <OrderPainel sale={sale} backToSale={backToSale} />
         </div>
       ) : null}
     </div>
