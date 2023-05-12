@@ -85,7 +85,10 @@ export function CheckoutProduct() {
       seller_id: 1,
       sales: soldProducts,
     };
-    return submitSale(sale);
+    submitSale(sale);
+    setCart({});
+    localStorage.setItem('cart', JSON.stringify({}));
+    push('/payment');
   };
 
   const submitSale = async (sale: Sale) => {

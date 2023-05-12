@@ -31,12 +31,23 @@ export default function LoginForm() {
 
     if (response.ok) {
       const responseJson = await response.json();
-      const userData = { ...responseJson.user, token: responseJson.token };
+      console.log(responseJson);
+
+      const userData = {
+        ...responseJson.user,
+        token: responseJson.access_token,
+      };
       localStorage.setItem('userdata', JSON.stringify(userData));
 
-      if (responseJson.user.role === 'customer') push('/customer/products');
-    } else {
-      setFailedLogin(true);
+      if (responseJson.user.role === 'customer') {
+        push('/customer/products');
+      } else if (responseJson.user.role === 'vendor') {
+        push('/vendor/orders');
+      } else if (responseJson.user.role === 'admin') {
+        push('/admin/manage');
+      } else {
+        setFailedLogin(true);
+      }
     }
   };
   return (

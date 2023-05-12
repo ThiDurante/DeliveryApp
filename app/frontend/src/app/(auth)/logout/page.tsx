@@ -1,9 +1,13 @@
 'use client';
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 export default function Logout() {
   const { push } = useRouter();
-  localStorage.removeItem('userdata');
-  localStorage.removeItem('cart');
-  push('/login');
+  useEffect(() => {
+    localStorage.removeItem('userdata');
+    localStorage.removeItem('cart');
+    push('/login');
+  }, []);
+  return null;
 }
