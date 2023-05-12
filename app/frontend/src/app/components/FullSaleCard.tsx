@@ -7,10 +7,12 @@ export default function FullSaleCard({
   index,
   sale,
   handleOrder,
+  address,
 }: {
   index: number;
   sale: Sale;
   handleOrder: (sale: Sale, index: number) => void;
+  address: boolean;
 }) {
   // const date = new Date(sale.sale_date);
   // const options: Intl.DateTimeFormatOptions = {
@@ -49,6 +51,9 @@ export default function FullSaleCard({
             R${Number(sale.total_price).toFixed(2)}
           </div>
         </div>
+        {address && (
+          <div className="order-address">{`${sale.delivery_address}, ${sale.delivery_number}`}</div>
+        )}
       </div>
     </div>
   );

@@ -59,6 +59,7 @@ export default async function Orders() {
                 index={index}
                 sale={sale}
                 handleOrder={handleOrder}
+                address={false}
               />
             ))}
         </div>
