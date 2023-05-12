@@ -99,3 +99,7 @@
 .status-red {
   background-color: red;
 }
+
+.status-blue {
+  background-color: rgb(42, 42, 233);
+}

@@ -65,6 +65,12 @@ export class SalesService {
   delivered(id: number) {
     return this.saleModel.update({ status: 'Delivered' }, { where: { id } });
   }
+  preparing(id: number) {
+    return this.saleModel.update({ status: 'Preparing' }, { where: { id } });
+  }
+  delivering(id: number) {
+    return this.saleModel.update({ status: 'Delivering' }, { where: { id } });
+  }
 
   remove(id: number) {
     return this.saleModel.destroy({ where: { id } });

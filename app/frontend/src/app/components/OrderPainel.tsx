@@ -6,18 +6,21 @@ import { OrderItem } from './OrderItem';
 export default function OrderPainel({
   backToSale,
   sale,
+  isVendor,
 }: {
   backToSale: () => void;
   sale: { sale: Sale; index: number };
+  isVendor: boolean;
 }) {
-  const handleMarkDelivered = async () => {
+  const handleStatus = async (status: string) => {
     const saleId = sale.sale.id;
-    await fetch(`http://localhost:3001/api/sales/${saleId}/delivered`, {
+    await fetch(`http://localhost:3001/api/sales/${status}/${saleId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
     });
+    window.location.reload();
   };
   return (
     <div>
@@ -27,8 +30,25 @@ export default function OrderPainel({
           <div className="order-number">{sale.index + 1}</div>
           <div className="order-date">{dateFormat(sale.sale.sale_date)}</div>
           <div className="order-status">{sale.sale.status}</div>
-          <button onClick={handleMarkDelivered}>Mark as Delivered</button>
-          <button onClick={() => backToSale()}>All Orders</button>
+          {isVendor && (
+            <>
+              <button onClick={() => handleStatus('preparing')}>
+                Prepare Order
+              </button>
+              <button onClick={() => handleStatus('delivering')}>
+                Delivering
+              </button>
+              <button onClick={() => backToSale()}>All Orders</button>
+            </>
+          )}
+          {!isVendor && (
+            <>
+              <button onClick={() => handleStatus('delivered')}>
+                Mark as Delivered
+              </button>
+              <button onClick={() => backToSale()}>All Orders</button>
+            </>
+          )}
           <table>
             <thead>
               <tr>
@@ -54,6 +74,11 @@ export default function OrderPainel({
               ))}
             </tbody>
           </table>
+          <div className="address">
+            {isVendor &&
+              `${sale.sale.delivery_address}, ${sale.sale.delivery_number}`}
+          </div>
+          <div className="total-price">Total: R${sale.sale.total_price}</div>
         </div>
       </div>
     </div>

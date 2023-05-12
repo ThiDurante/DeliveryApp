@@ -86,23 +86,19 @@ export function CheckoutProduct() {
       sales: soldProducts,
     };
     submitSale(sale);
-    setCart({});
-    localStorage.setItem('cart', JSON.stringify({}));
-    push('/payment');
   };
 
   const submitSale = async (sale: Sale) => {
-    console.log(sale);
-
     const response = await fetch('http://localhost:3001/api/sales', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(sale),
     });
-    console.log(response);
 
     if (response.ok) {
-      // push('/payment');
+      setCart({});
+      localStorage.setItem('cart', JSON.stringify({}));
+      push('/payment');
     } else {
       alert('Something went wrong, please try again');
     }

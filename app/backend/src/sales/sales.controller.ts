@@ -26,9 +26,19 @@ export class SalesController {
     return this.salesService.findAll();
   }
 
-  @Put(':id/delivered')
+  @Put('/delivered/:id')
   delivered(@Param('id') id: string) {
     return this.salesService.delivered(+id);
+  }
+
+  @Put('/preparing/:id')
+  preparing(@Param('id') id: string) {
+    return this.salesService.preparing(+id);
+  }
+
+  @Put('/delivering/:id')
+  delivering(@Param('id') id: string) {
+    return this.salesService.delivering(+id);
   }
 
   @Get('user/:user_id')

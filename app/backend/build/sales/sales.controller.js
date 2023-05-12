@@ -30,6 +30,12 @@ let SalesController = class SalesController {
     delivered(id) {
         return this.salesService.delivered(+id);
     }
+    preparing(id) {
+        return this.salesService.preparing(+id);
+    }
+    delivering(id) {
+        return this.salesService.delivering(+id);
+    }
     findByUser(user_id) {
         return this.salesService.findByUser(+user_id);
     }
@@ -57,12 +63,26 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], SalesController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Put)(':id/delivered'),
+    (0, common_1.Put)('/delivered/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], SalesController.prototype, "delivered", null);
+__decorate([
+    (0, common_1.Put)('/preparing/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], SalesController.prototype, "preparing", null);
+__decorate([
+    (0, common_1.Put)('/delivering/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], SalesController.prototype, "delivering", null);
 __decorate([
     (0, common_1.Get)('user/:user_id'),
     __param(0, (0, common_1.Param)('user_id')),

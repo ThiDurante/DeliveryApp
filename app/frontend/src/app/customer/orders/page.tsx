@@ -66,7 +66,7 @@ export default async function Orders() {
       ) : null}
       {openOrder ? (
         <div>
-          <OrderPainel sale={sale} backToSale={backToSale} />
+          <OrderPainel sale={sale} backToSale={backToSale} isVendor={false} />
         </div>
       ) : null}
     </div>

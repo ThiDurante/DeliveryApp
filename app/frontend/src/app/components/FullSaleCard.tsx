@@ -31,6 +31,8 @@ export default function FullSaleCard({
         return 'status-green';
       case 'Delivered':
         return 'status-cyan';
+      case 'Delivering':
+        return 'status-blue';
       default:
         return 'status-red';
     }

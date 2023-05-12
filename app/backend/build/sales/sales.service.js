@@ -60,6 +60,12 @@ let SalesService = class SalesService {
     delivered(id) {
         return this.saleModel.update({ status: 'Delivered' }, { where: { id } });
     }
+    preparing(id) {
+        return this.saleModel.update({ status: 'Preparing' }, { where: { id } });
+    }
+    delivering(id) {
+        return this.saleModel.update({ status: 'Delivering' }, { where: { id } });
+    }
     remove(id) {
         return this.saleModel.destroy({ where: { id } });
     }

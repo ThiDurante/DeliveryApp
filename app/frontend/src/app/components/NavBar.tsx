@@ -12,19 +12,29 @@ import {
 import { useProductContext } from '../Context/store';
 import { useEffect, useState } from 'react';
 
-type UserData = {
-  id: number;
-  name: string;
-};
-
-export function Navbar() {
+export function Navbar({ vendor }: any) {
   const { push } = useRouter();
-  const { user } = useProductContext() as { user: UserData };
+  const { user } = useProductContext();
   const [userLoaded, setUserLoaded] = useState(false);
 
   useEffect(() => {
-    if (user) setUserLoaded(true);
-  }, [user]);
+    if (user && !vendor) setUserLoaded(true);
+  }, []);
+
+  const handleRedirect = () => {
+    if (user.role === 'customer') push('/customer/orders');
+    if (user.role === 'vendor') push('/vendor/orders');
+  };
+
+  const handleName = () => {
+    if (vendor) {
+      return vendor.name;
+    } else if (userLoaded) {
+      return user.name;
+    } else {
+      return 'Profile';
+    }
+  };
 
   return (
     <div>
@@ -40,11 +50,11 @@ export function Navbar() {
             <Button onClick={() => push('/customer/products')} color="inherit">
               Products
             </Button>
-            <Button onClick={() => push('/customer/orders')} color="inherit">
+            <Button onClick={() => handleRedirect()} color="inherit">
               My Orders
             </Button>
             <Button onClick={() => push('/profile')} color="inherit">
-              {userLoaded && user.name}
+              {handleName()}
             </Button>
             <Button onClick={() => push('/logout')} color="inherit">
               Logout

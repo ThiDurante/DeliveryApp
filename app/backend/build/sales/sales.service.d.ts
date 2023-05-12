@@ -10,5 +10,7 @@ export declare class SalesService {
     findByUser(user_id: number): Promise<Sale[]>;
     update(id: number, updateSaleDto: UpdateSaleDto): Promise<[affectedCount: number]>;
     delivered(id: number): Promise<[affectedCount: number]>;
+    preparing(id: number): Promise<[affectedCount: number]>;
+    delivering(id: number): Promise<[affectedCount: number]>;
     remove(id: number): Promise<number>;
 }
