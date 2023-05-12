@@ -6,6 +6,7 @@ import OrderPainel from '@/app/components/OrderPainel';
 import { Sale } from '@/app/interfaces/interfaces';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
+import '../../CSS/CheckoutPage.css';
 
 export default function Orders() {
   const inittialSaleState = {
