@@ -2,6 +2,8 @@
 
 Este foi um projeto FullStack desenvolvido no curso da Trybe onde foi construída uma aplicação inteira do zero.
 
+O curso propunha para que fosse construído com Express e React, porém para inovar e aprender novas tecnologias decidi que ia constrí-lo com Next e Nest!
+
 O objetivo final era controllar um Delivery de bebidas, com suporte a usuário cliente, vendedor e administrador.
 
 O projeto conta com um backend em node/nest, um front em NextJS e um database MySql.
