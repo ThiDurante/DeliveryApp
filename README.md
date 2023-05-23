@@ -118,17 +118,17 @@ Selecione o browser e rode o teste app_test
 
 <details>
 
-![photo](./images/site1.png)
-![photo](./images/site2.png)
-![photo](./images/site3.png)
+![photo](https://i.imgur.com/soslHPL.png)
+![photo](https://i.imgur.com/fVkR53o.png)
+![photo](https://i.imgur.com/NF9vR1y.png)
 
 </details>
 
 ## Stacks Utilizadas
 
 <details>
-Front-end: ReactJS, Cypress, Typescript
-Back-end: Node, Express, Sequelize, Typescript
+Front-end: NextJS, Cypress, Typescript
+Back-end: Node, Nest, Sequelize, Typescript
 </details>
 
 ## Sobre Mim
