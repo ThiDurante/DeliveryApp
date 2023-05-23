@@ -45,10 +45,12 @@ export default function LoginForm() {
         push('/vendor/orders');
       } else if (responseJson.user.role === 'admin') {
         push('/admin/manage');
-      } else {
-        setFailedLogin(true);
       }
     }
+    const responseJson = await response.json();
+    console.log(responseJson);
+
+    setFailedLogin(true);
   };
   return (
     <div className="container-login">

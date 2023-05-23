@@ -89,6 +89,8 @@ export function CheckoutProduct() {
   };
 
   const submitSale = async (sale: Sale) => {
+    console.log(sale);
+
     const response = await fetch('http://localhost:3001/api/sales', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

@@ -24,7 +24,8 @@ let SalesService = class SalesService {
         this.saleModel = saleModel;
     }
     async create(createSaleDto) {
-        console.log(createSaleDto);
+        createSaleDto.sale_date = new Date().toISOString();
+        console.log(typeof createSaleDto);
         const sale = await this.saleModel.create(Object.assign({}, createSaleDto));
         const sale_product = createSaleDto.sales.map((product) => {
             return {
@@ -46,7 +47,7 @@ let SalesService = class SalesService {
         return this.saleModel.findAll({ include: [user_model_1.User] });
     }
     findOne(id) {
-        return this.saleModel.findOne({ where: { id }, include: [user_model_1.User] });
+        return this.saleModel.findOne({ where: { id }, include: [user_model_1.User, product_model_1.Product] });
     }
     findByUser(user_id) {
         return this.saleModel.findAll({

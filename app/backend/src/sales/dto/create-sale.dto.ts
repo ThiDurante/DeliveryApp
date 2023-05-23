@@ -7,7 +7,7 @@ export class CreateSaleDto {
   total_price: number;
   delivery_address: string;
   delivery_number: string;
-  sale_date: Date;
+  sale_date: string;
   status: string;
   sales: Product[];
 }

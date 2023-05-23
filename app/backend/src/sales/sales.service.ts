@@ -7,20 +7,11 @@ import { User } from 'src/user/model/user.model';
 import { Product } from 'src/products/model/product.model';
 import { Sales_Products } from 'src/sales_products/entities/sales_products.model';
 
-type SaleProduct = {
-  id: number;
-  name: string;
-  price: number;
-  url_image: string;
-  quantity: number;
-};
-
 @Injectable()
 export class SalesService {
   constructor(@InjectModel(Sale) private saleModel: typeof Sale) {}
   async create(createSaleDto: CreateSaleDto) {
-    console.log(createSaleDto);
-
+    createSaleDto.sale_date = new Date().toISOString();
     const sale = await this.saleModel.create({
       ...createSaleDto,
     });
@@ -48,7 +39,7 @@ export class SalesService {
   }
 
   findOne(id: number) {
-    return this.saleModel.findOne({ where: { id }, include: [User] });
+    return this.saleModel.findOne({ where: { id }, include: [User, Product] });
   }
 
   findByUser(user_id: number) {

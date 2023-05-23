@@ -47,9 +47,9 @@ CREATE TABLE IF NOT EXISTS Sales_Products (
 
 INSERT INTO Users (id, name, email, password, role) VALUES
   (1, 'Delivery App Admin', 'adm@deliveryapp.com', '$2a$12$24mk3pPbWDIrvVLAhV0F8eLfXZPH9bJCrS0SgU2kPQYW40HwVbMSi', 'administrator'), -- senha: --adm2@21!!--
-  (2, 'Fulana Pereira', 'fulana@deliveryapp.com', '$2a$12$10yXYGvUedgcvKwRpIHCIOClPASrBMt..jNwpYA4YlgM20bNNcU1C', 'seller'), -- senha: fulana@123
-  (3, 'Cliente Zé Birita', 'zebirita@email.com', '$2a$12$fe0fRv2lv1o.oUaB7OGPfun4uaAvkbiB6OxBJQ.hn4V2hXJRbXwkW', 'customer'); -- senha: $#zebirita#$
-    
+  (2, 'Vendedor', 'vendedor@vendedor.com', '$2a$12$10yXYGvUedgcvKwRpIHCIOClPASrBMt..jNwpYA4YlgM20bNNcU1C', 'seller'), -- senha: fulana@123
+  (3, 'Cliente Zé Birita', 'zebirita@email.com', '$2a$12$fe0fRv2lv1o.oUaB7OGPfun4uaAvkbiB6OxBJQ.hn4V2hXJRbXwkW', 'customer'), -- senha: $#zebirita#$
+  (4, 'admin', 'admin@admin.com', '$2b$10$nTQOwXeZCwYSmoTJGgfywexzExq8/9N5ov7FIk6trdrHsuXd2oZgO', 'administrator'); -- senha: admin--
 
 INSERT INTO Products (id, name, price, url_image) VALUES
 	(1, 'Skol Lata 350ml',2.20, 'https://i.imgur.com/yR8kpDc.jpg'),

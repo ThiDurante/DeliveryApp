@@ -21,6 +21,7 @@ export default function Register() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const { email, password, name } = formValues;
+
     try {
       const response = await fetch('http://localhost:3001/api/auth/register', {
         method: 'POST',
@@ -36,6 +37,7 @@ export default function Register() {
       push('customer/products');
     } catch (error: any) {
       setFailedRegister(true);
+
       setFailedMessage(
         error.message === 'Conflict'
           ? 'Email already exists'

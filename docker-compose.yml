@@ -9,3 +9,5 @@ services:
       - 33060:33060
     environment:
       MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - ./script.sql:/docker-entrypoint-initdb.d/seed_script.sql
