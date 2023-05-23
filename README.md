@@ -1,4 +1,4 @@
-# tt_Shopper
+# Delivery App
 
 Este foi um projeto FullStack desenvolvido no curso da Trybe onde foi construída uma aplicação inteira do zero.
 
