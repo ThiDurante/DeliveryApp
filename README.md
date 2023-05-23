@@ -143,5 +143,3 @@ Sou um desenvolvedor Full-Stack, trabalho com a stack de node/react e estou semp
 
 - [@ThiDurante](https://www.github.com/ThiDurante)
 - [Linkedin](https://www.linkedin.com/in/thidurante/)
-
-## Agradecimentos
