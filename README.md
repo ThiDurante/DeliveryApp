@@ -128,7 +128,9 @@ Selecione o browser e rode o teste app_test
 
 <details>
 Front-end: NextJS, Cypress, Typescript
+
 Back-end: Node, Nest, Sequelize, Typescript
+
 </details>
 
 ## Sobre Mim
